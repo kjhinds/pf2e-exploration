@@ -1,0 +1,19 @@
+<div class="activity">
+  <div>
+    <input type="radio" id="{{ id }}" name="exploration_activity" value="{{ name }}">
+  </div>
+  <div>
+    <label for="{{ id }}">
+      <a class="content-link" draggable="true"
+         data-uuid="Actor.{{ actorId }}.Item.{{ id }}"
+         data-id="{{ id }}" data-type="Item" data-pack="pf2e.actionspf2e"
+         data-tooltip="Ability Item">
+        <i class="fa-solid fa-person-running-fast"></i>
+        {{ name }}
+      </a>
+    </label>
+    {{#if desc}}
+    <div>{{ desc }}</div>
+    {{/if}}
+  </div>
+</div>

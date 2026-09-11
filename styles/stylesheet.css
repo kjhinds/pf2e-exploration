@@ -1,0 +1,92 @@
+.pf2e-exploration-tracker .sidebyside {
+  display: flex;
+  align-items: flex-start;
+}
+
+.pf2e-exploration-chooser {
+  width: max-content;	
+}
+
+.pf2e-exploration-chooser .sidebyside {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.pf2e-exploration-chooser .extra {
+  flex: 1;
+  border-left-style: solid;
+  border-width: 1px;
+}
+
+.pf2e-exploration-chooser .standard {
+  flex: 3;
+}
+
+.pf2e-exploration-chooser .favorites {
+  padding: 4px 8px;
+}
+
+.pf2e-exploration-chooser .defaults {
+  padding: 4px 8px;
+}
+
+.pf2e-exploration-chooser .activity {
+  border-bottom-style: solid;
+  border-width: 1px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.pf2e-exploration-chooser h4 {
+  margin: 8px 0 4px;
+}
+
+.pf2e-exploration-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.pf2e-exploration-reroll {
+  padding: 0 4px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pf2e-exploration-investigate {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#pf2e-exploration-tooltip {
+  background: rgba(0, 0, 0, 0.95);
+  padding: 4px 8px;
+  border: 1px solid #666;
+  color: #fff;
+  position: absolute;
+  z-index: 10000;
+}
+
+#pf2e-exploration-tooltip h4 {
+  margin: 4px 0;
+  color: #999;
+}
+
+#pf2e-exploration-tooltip table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#pf2e-exploration-tooltip th,
+#pf2e-exploration-tooltip td {
+  padding: 6px 8px;
+  vertical-align: middle;
+}
+
+#pf2e-exploration-tooltip tr {
+  border-bottom: 2px solid #666;
+}

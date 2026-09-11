@@ -1,0 +1,27 @@
+<div class='pf2e-exploration-chooser'>
+	<h4>Choose Exploration Activity for {{ actor.name }}</h4>
+	<div class='sidebyside'>
+		<div class='standard'>
+			<div class='favorites'>
+			  <h4>Favorites</h4>
+			  {{#each favoriteActivities}}
+			  {{> "pf2e-exploration.activity-option" this actorId=../actor._id}}
+			  {{/each}}
+			</div>
+			<div class='defaults'>
+			  <h4>Defaults</h4>
+			  {{#each standardActivities}}
+			  {{> "pf2e-exploration.activity-option" this actorId=../actor._id}}
+			  {{/each}}
+			</div>
+		</div>
+		{{#if extraActivities }}
+		<div class='extra'>
+			<h4>Extras</h4>
+			{{#each extraActivities}}
+			{{> "pf2e-exploration.activity-option" this actorId=../actor._id}}
+			{{/each}}
+		</div>
+		{{/if}}
+	</div>
+</div>

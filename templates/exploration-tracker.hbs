@@ -1,0 +1,49 @@
+<div class='pf2e-exploration-tracker'>
+  <h4>Party Exploration Activities</h4>
+  <table>
+    <thead>
+	  <tr>
+	    <th>Actor</th>
+		<th>Activity</th>
+		<th>Roll</th>
+		{{#if interactable}}
+		<th>Request</th>
+		{{/if}}
+      </tr>
+	</thead>
+	<tbody>
+	  {{#each partyMembers as |member|}}
+	  <tr data-actor-id="{{member.id}}" 
+	      data-actor-activity="{{member.activity}}"
+		  data-actor-name="{{member.name}}">
+	    <td>{{ member.name }}</td>
+		<td>{{ member.activity }}</td>
+		<td>
+		  {{#each member.rollSummary as |roll|}}
+		  <p>{{ roll.label }} - {{ roll.total }}</p>
+		  {{/each}}
+		</td>
+		{{#if ../interactable}}
+		<td>
+		  {{#if member.activity}}
+		  <button type='button' data-action='clearActivity'>Clear Activity</button>
+		  {{/if}}
+		  {{#if member.roll}}
+		  <button type='button' data-action='requestReroll'>Request Reroll</button>
+		  {{else}}
+		  <button type='button' data-action='requestActivity'>Request Activity</button>
+		  {{/if}}
+		</td>
+		{{/if}}
+	  </tr>
+	  {{/each}}
+	</tbody>
+  </table>
+  {{#if interactable}}
+  <div class='sidebyside'>
+    <button type='button' data-action='requestPartyActivities'>Request Party Activities</button>
+	<button type='button' data-action='clearAllActivities'>Clear All Activities</button>
+	<button type='button' data-action='closeWindow'>Close</button>
+  </div>
+  {{/if}}
+</div>

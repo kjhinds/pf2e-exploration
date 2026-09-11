@@ -1,0 +1,22 @@
+{
+  "id": "pf2e-exploration",
+  "title": "PF2E Exploration",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "description": "A module to improve player selection of exploration activities",
+  "authors": [
+    {
+      "name": "ArekDirithe"
+    }
+  ],
+  "esmodules": [
+    "scripts/initialize.js"
+  ],
+  "styles": [
+    "styles/stylesheet.css"
+  ],
+  "socket": true
+}
