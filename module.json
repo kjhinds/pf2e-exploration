@@ -18,5 +18,17 @@
   "styles": [
     "styles/stylesheet.css"
   ],
-  "socket": true
+  "socket": true,
+  "packs": [
+    {
+      "name": "macros",
+      "label": "PF2E Exploration Activities Macros",
+      "path": "packs/macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ]
 }
