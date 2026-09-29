@@ -1,6 +1,7 @@
 import { registerSocketListener } from './socket.js';
 import { openExplorationChooser } from './chooser-dialog.js';
 import { rollExplorationCheck } from './checks.js';
+import { handlePartyDataRequest, handlePartyDataResponse } from './party-sync.js';
  
 export function registerSocketHandlers() {
   registerSocketListener(handleSocketMessage);
@@ -14,6 +15,10 @@ function handleSocketMessage(data) {
       return handleRerollRequest(data);
     case 'request-exploration':
       return handleExplorationRequest(data);
+    case 'request-party-data':
+      return handlePartyDataRequest(data);
+    case 'party-data-response':
+      return handlePartyDataResponse(data);
   }
 }
  

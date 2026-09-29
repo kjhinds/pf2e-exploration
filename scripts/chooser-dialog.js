@@ -1,11 +1,12 @@
 import { DEFAULT_ACTIVITIES, CHOOSER_TEMPLATE, ACTIONS_PACK_ID } from './constants.js';
 import { getPackDocumentByName } from './compendium-utils.js';
 import { openExplorationTracker } from './exploration-tracker.js';
+import { fetchPartyActivities } from './party-sync.js';
 
 const renderTemplate = foundry.applications.handlebars.renderTemplate;
 const DialogV2 = foundry.applications.api.DialogV2;
 
-export function openExplorationChooser() {
+export async function openExplorationChooser() {
   const tokens = canvas.tokens.controlled.filter((t) => t.actor?.type === 'character');
 
   if (tokens.length === 0 && game.user.isGM) {
@@ -15,11 +16,13 @@ export function openExplorationChooser() {
     ui.notifications.error('You must select at least one PC token');
     return;
   }
+  
+  const party = await fetchPartyActivities();
 
   for (const token of tokens) {
     const actor = token.actor;
     const activities = getExplorationItems(actor);
-    showChooserDialog(actor, buildDialogData(actor, activities));
+    showChooserDialog(actor, buildDialogData(actor, activities, party));
   }
 }
 
@@ -33,7 +36,7 @@ function isExplorationActivity(item) {
   return item.traits.some((t) => t === 'exploration');
 }
 
-function buildDialogData(actor, activities) {
+function buildDialogData(actor, activities, party) {
   const activitiesByName = new Map(activities.map((activity) => [activity.name, activity]));
   const favoriteActivities = [];
   const standardActivities = [];
@@ -51,7 +54,19 @@ function buildDialogData(actor, activities) {
     .filter((activity) => !(activity.name in DEFAULT_ACTIVITIES))
     .map(({ id, name }) => ({ id, name }));
 
-  return { favoriteActivities, standardActivities, extraActivities, actor };
+  const partyRows = party.map((member) => ({
+    ...member,
+    isCurrent: member.id === actor.id,
+    activityText: member.activity || '—',
+  }));
+
+  return { 
+    favoriteActivities, 
+    standardActivities, 
+    extraActivities, 
+    actor, 
+    party: partyRows 
+  };
 }
 
 async function addDefaultActivity(actor, actionName) {

@@ -13,6 +13,11 @@
   width: 100%;
 }
 
+.pf2e-exploration-chooser .party-activities tr.current {
+  font-weight: bold;
+  color: orange;
+}
+
 .pf2e-exploration-chooser .extra {
   flex: 1;
   border-left-style: solid;

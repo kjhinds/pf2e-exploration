@@ -23,5 +23,22 @@
 			{{/each}}
 		</div>
 		{{/if}}
+    {{#if party.length}}
+    <div class='party-activities'>
+      <h4>Party Activities</h4>
+      <table>
+        <thead>
+          <tr><th>Character</th><th>Activity</th></tr>
+        </thead>
+        <tbody>
+          {{#each party}}
+          <tr class="{{#if isCurrent}}current{{/if}}">
+            <td>{{ name }}</td><td>{{ activity }}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{/if}}
 	</div>
 </div>
