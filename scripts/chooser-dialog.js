@@ -7,23 +7,16 @@ const renderTemplate = foundry.applications.handlebars.renderTemplate;
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export async function openExplorationChooser() {
-  const tokens = canvas.tokens.controlled.filter((t) => t.actor?.type === 'character');
-
-  if (tokens.length === 0 && game.user.isGM) {
-	openExplorationTracker();
-	return;
-  } else if (tokens.length === 0) {
-    ui.notifications.error('You must select at least one PC token');
-    return;
+  if (game.user.isGM) {
+  	openExplorationTracker();
+	  return;
   }
   
   const party = await fetchPartyActivities();
-
-  for (const token of tokens) {
-    const actor = token.actor;
-    const activities = getExplorationItems(actor);
-    showChooserDialog(actor, buildDialogData(actor, activities, party));
-  }
+  const actor = game.user.character;
+  const activities = getExplorationItems(actor);
+  
+  showChooserDialog(actor, buildDialogData(actor, activities, party));
 }
 
 function getExplorationItems(actor) {

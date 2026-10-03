@@ -1,4 +1,5 @@
 import { getPartyExplorationData } from './party-data.js';
+import { emitSocketMessage } from './socket.js';
 
 const pending = new Map();
 
